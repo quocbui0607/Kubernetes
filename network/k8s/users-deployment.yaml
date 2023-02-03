@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+        - name: users
+          image: quocbui0607/k8s-user-demo
+          env:
+            - name: AUTH_ADDRESS
+              # value: "10.111.231.44"
+              value: "auth-service.default"
